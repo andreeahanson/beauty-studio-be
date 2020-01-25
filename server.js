@@ -117,3 +117,20 @@ app.post("/api/v1/beauty_products/:id/notes", (request, response) => {
       response.status(500).json({ error });
     });
 });
+
+app.delete('/api/v1/notes/:id', async (request, response) => {
+  const id = request.params.id;
+  try {
+    const note = await database('notes').where('id', id).select()
+    if(note.length) {
+      await database('notes').select().where('id', id).del();
+      response.sendStatus(204);
+    } else {
+      response.status(404).json({
+        error: `Could not find note with the id of ${id}.`
+      })
+    }
+  } catch (error) {
+    response.status(500).json({ error });
+  }
+})
