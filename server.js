@@ -142,7 +142,7 @@ app.delete("/api/v1/notes/:id", async (request, response) => {
 
 app.patch("/api/v1/notes/:id", async (request, response) => {
   const id = request.params.id;
-  const text = request.body.note;
+  const note = request.body.note;
   try {
     const notes = await database("notes")
       .select()
@@ -151,8 +151,8 @@ app.patch("/api/v1/notes/:id", async (request, response) => {
       await database("notes")
         .select()
         .where("id", id)
-        .update({ note : text });
-      response.status(200).json({ id, note : text });
+        .update({ note });
+      response.status(200).json({ id, note });
     } else {
       response.status(404).json({
         error: `Could not find a note with id of ${id}`
