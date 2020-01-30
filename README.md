@@ -37,6 +37,27 @@ to be added soon ...
 ]
 ```
 
+#### GET a specific beauty product:
+
+```/beauty_products/<beauty product id>```
+
+*Example request*
+
+```GET '/beauty_products/1'```
+
+*Example response*
+
+```
+    {
+        "id": 1,
+        "name": "Blush",
+        "brand": "Maybeline",
+        "created_at": "2020-01-25T01:11:37.696Z",
+        "updated_at": "2020-01-25T01:11:37.696Z"
+    }
+```
+
+
 #### GET all the notes:
 
 ```/notes```
