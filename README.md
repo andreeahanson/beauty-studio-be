@@ -114,3 +114,38 @@ Body:
 ]
 ```
 
+
+#### POST a new note:
+
+```/beauty_products/<beauty product id>/notes```
+
+*Example request*
+
+```POST '/beauty_products/<beauty product id>/notes'```
+
+*Required parameters*
+
+```
+Headers:  "Content-Type": "application/json"
+
+Body: 
+{
+  "note": <String>,
+  "beauty_product_id" : <Number>
+}
+```
+
+*Example response*
+
+```
+[
+    {
+        "note": "I like the silver one",
+        "beauty_product_id": 414,
+        "created_at": "2019-08-18T06:18:36.193Z",
+        "updated_at": "2019-08-18T06:18:36.193Z"
+    }
+]
+```
+
+
