@@ -80,5 +80,121 @@ to be added soon ...
 ]
 ```
 
+#### POST a new beauty product:
+
+```/beauty_products```
+
+*Example request*
+
+```POST '/beauty_products'```
+
+*Required parameters*
+
+```
+Headers:  "Content-Type": "application/json"
+
+Body: 
+{
+  "name": <String>,
+  "brand" : <String>
+}
+```
+
+*Example response*
+
+```
+[
+    {
+        "id": 414,
+        "name": "Mascara",
+        "brand": "Maybelline",
+        "created_at": "2019-08-18T06:18:36.193Z",
+        "updated_at": "2019-08-18T06:18:36.193Z"
+    }
+]
+```
+
+
+#### POST a new note:
+
+```/beauty_products/<beauty product id>/notes```
+
+*Example request*
+
+```POST '/beauty_products/414/notes'```
+
+*Required parameters*
+
+```
+Headers:  "Content-Type": "application/json"
+
+Body: 
+{
+  "note": <String>,
+  "beauty_product_id" : <Number>
+}
+```
+
+*Example response*
+
+```
+[
+    {
+        "note": "I like the silver one",
+        "beauty_product_id": 414,
+        "created_at": "2019-08-18T06:18:36.193Z",
+        "updated_at": "2019-08-18T06:18:36.193Z"
+    }
+]
+```
+
+
+#### PATCH a note:
+
+```/beauty_products/notes/<note id>```
+
+*Example request*
+
+```PATCH '/beauty_products/notes/414'```
+
+*Required parameters*
+
+```
+Headers:  "Content-Type": "application/json"
+
+Body: 
+{
+  "id" : <Number>
+  "note": <New String>,
+}
+```
+
+*Example response*
+
+```
+[
+    {
+        "id": "414",
+        "note": "I like the pink one",
+    }
+]
+```
+
+
+
+#### DELETE a beauty product:
+
+```/beauty_products/<beauty product id>```
+
+*Example request*
+
+```DELETE '/beauty_products/414'```
+
+*Example response*
+
+```
+{
+    "success": "You have successfully deleted beauty product with the id of 414"
+}
 
 

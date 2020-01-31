@@ -129,7 +129,9 @@ app.delete("/api/v1/notes/:id", async (request, response) => {
         .select()
         .where("id", id)
         .del();
-      response.sendStatus(204);
+      response.sendStatus(204).json({
+        success: `You have successfully deleted beauty product with the id of ${id}`
+      });
     } else {
       response.status(404).json({
         error: `Could not find note with the id of ${id}.`
