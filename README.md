@@ -80,5 +80,37 @@ to be added soon ...
 ]
 ```
 
+#### POST a new beauty product:
 
+```/beauty_products```
+
+*Example request*
+
+```POST '/beauty_products'```
+
+*Required parameters*
+
+```
+Headers:  "Content-Type": "application/json"
+
+Body: 
+{
+  "name": <String>,
+  "brand" : <String>
+}
+```
+
+*Example response*
+
+```
+[
+    {
+        "id": 414,
+        "name": "Mascara",
+        "brand": "Maybelline",
+        "created_at": "2019-08-18T06:18:36.193Z",
+        "updated_at": "2019-08-18T06:18:36.193Z"
+    }
+]
+```
 
