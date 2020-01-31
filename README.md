@@ -121,7 +121,7 @@ Body:
 
 *Example request*
 
-```POST '/beauty_products/<beauty product id>/notes'```
+```POST '/beauty_products/414/notes'```
 
 *Required parameters*
 
@@ -147,5 +147,54 @@ Body:
     }
 ]
 ```
+
+
+#### PATCH a note:
+
+```/beauty_products/notes/<note id>```
+
+*Example request*
+
+```PATCH '/beauty_products/notes/414'```
+
+*Required parameters*
+
+```
+Headers:  "Content-Type": "application/json"
+
+Body: 
+{
+  "id" : <Number>
+  "note": <New String>,
+}
+```
+
+*Example response*
+
+```
+[
+    {
+        "id": "414",
+        "note": "I like the pink one",
+    }
+]
+```
+
+
+
+#### DELETE a beauty product:
+
+```/beauty_products/<beauty product id>```
+
+*Example request*
+
+```DELETE '/beauty_products/414'```
+
+*Example response*
+
+```
+{
+    "success": "You have successfully deleted beauty product with the id of 414"
+}
 
 
