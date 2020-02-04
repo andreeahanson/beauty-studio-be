@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server.js"
+    "start": "nodemon --exec babel-node server.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "@babel/preset-env": "^7.8.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^25.1.0",
     "supertest": "^4.0.2"
   }
 }

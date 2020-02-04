@@ -10,4 +10,12 @@ module.exports = {
     },
     useNullAsDefault: true
   },
+  test: {
+    client: "pg",
+    connection: "postgres://localhost/swatchr_test",
+    migrations: {
+      directory: "./migrations"
+    },
+    useNullAsDefault: true
+  },
 };
