@@ -12,10 +12,23 @@ module.exports = {
   },
   test: {
     client: "pg",
-    connection: "postgres://localhost/swatchr_test",
+    connection: "postgres://localhost/beauty_products",
     migrations: {
       directory: "./migrations"
     },
     useNullAsDefault: true
   },
+  // production: {
+  //   client: "pg",
+  //   connection: process.env.DATABASE_URL + `?ssl=true`,
+  //   migrations: {
+  //     directory: "./migrations"
+  //   },
+  //   useNullAsDefault: true
+  // },
+  pool: {
+    min: 0,
+    max: 10
+  },
+  acquireConnectionTimeout: 20000
 };

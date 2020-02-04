@@ -9,8 +9,8 @@ const database = require("knex")(configuration);
 app.locals.title = "Beauty Products & Notes";
 app.set("port", process.env.PORT || 3001);
 
-app.listen(3001, () => {
-  console.log("The HTTP server is listening at Port 3001");
+app.listen(app.get("port"), () => {
+  console.log(`Beauty Studio BE is running on http://localhost:${app.get("port")}.`);
 });
 
 app.get("/", (request, response) => {
@@ -57,24 +57,24 @@ app.get("/api/v1/beauty_products/:id", (request, response) => {
     });
 });
 
-app.get("/api/v1/beauty_products/:id/notes", async (request, response) => {
-  try {
-    const id = request.params.id;
-    const validProduct = await database("beauty_products").where("id", id);
-    if (validProduct.length) {
-      const notes = await database("notes")
-        .where("beauty_product_id", id)
-        .select();
-      response.status(200).json(notes);
-    } else {
-      response
-        .status(404)
-        .json(`The beauty product with the id of ${id} doesn't exist`);
-    }
-  } catch (error) {
-    response.status(500).json({ error });
-  }
-});
+// app.get("/api/v1/beauty_products/:id/notes", async (request, response) => {
+//   try {
+//     const id = request.params.id;
+//     const validProduct = await database("beauty_products").where("id", id);
+//     if (validProduct.length) {
+//       const notes = await database("notes")
+//         .where("beauty_product_id", id)
+//         .select();
+//       response.status(200).json(notes);
+//     } else {
+//       response
+//         .status(404)
+//         .json(`The beauty product with the id of ${id} doesn't exist`);
+//     }
+//   } catch (error) {
+//     response.status(500).json({ error });
+//   }
+// });
 
 app.post("/api/v1/beauty_products", (request, response) => {
   const product = request.body;
@@ -118,49 +118,51 @@ app.post("/api/v1/beauty_products/:id/notes", (request, response) => {
     });
 });
 
-app.delete("/api/v1/notes/:id", async (request, response) => {
-  const id = request.params.id;
-  try {
-    const note = await database("notes")
-      .where("id", id)
-      .select();
-    if (note.length) {
-      await database("notes")
-        .select()
-        .where("id", id)
-        .del();
-      response.sendStatus(204).json({
-        success: `You have successfully deleted beauty product with the id of ${id}`
-      });
-    } else {
-      response.status(404).json({
-        error: `Could not find note with the id of ${id}.`
-      });
-    }
-  } catch (error) {
-    response.status(500).json({ error });
-  }
-});
+// app.delete("/api/v1/notes/:id", async (request, response) => {
+//   const id = request.params.id;
+//   try {
+//     const note = await database("notes")
+//       .where("id", id)
+//       .select();
+//     if (note.length) {
+//       await database("notes")
+//         .select()
+//         .where("id", id)
+//         .del();
+//       response.sendStatus(204).json({
+//         success: `You have successfully deleted beauty product with the id of ${id}`
+//       });
+//     } else {
+//       response.status(404).json({
+//         error: `Could not find note with the id of ${id}.`
+//       });
+//     }
+//   } catch (error) {
+//     response.status(500).json({ error });
+//   }
+// });
 
-app.patch("/api/v1/notes/:id", async (request, response) => {
-  const id = request.params.id;
-  const note = request.body.note;
-  try {
-    const notes = await database("notes")
-      .select()
-      .where("id", id);
-    if (notes.length) {
-      await database("notes")
-        .select()
-        .where("id", id)
-        .update({ note });
-      response.status(200).json({ id, note });
-    } else {
-      response.status(404).json({
-        error: `Could not find a note with id of ${id}`
-      });
-    }
-  } catch (error) {
-    response.status(500).json({ error });
-  }
-});
+// app.patch("/api/v1/notes/:id", async (request, response) => {
+//   const id = request.params.id;
+//   const note = request.body.note;
+//   try {
+//     const notes = await database("notes")
+//       .select()
+//       .where("id", id);
+//     if (notes.length) {
+//       await database("notes")
+//         .select()
+//         .where("id", id)
+//         .update({ note });
+//       response.status(200).json({ id, note });
+//     } else {
+//       response.status(404).json({
+//         error: `Could not find a note with id of ${id}`
+//       });
+//     }
+//   } catch (error) {
+//     response.status(500).json({ error });
+//   }
+// });
+
+module.exports = app;
