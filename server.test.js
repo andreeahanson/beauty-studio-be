@@ -38,6 +38,28 @@ describe('GET / beauty_products', () => {
       expect(productName).toEqual(expectedProductName);
     })
   });
+});
+
+describe('GET / notes', () => {
+  describe('happy path', () => {
+    it('should return a status code of 200', async () => {
+      const res = await request(app).get('/api/v1/notes');
+      expect(res.status).toBe(200);
+    });
+
+    it('should return all notes in the database', async () => {
+      const expectedNotes = await database('notes').select();
+      const cleanedExpectedNotes = expectedNotes.map(note => {
+        return { id: note.id, beauty_product_id: note.beauty_product_id }
+      })
+      const result = await request(app).get('/api/v1/notes');
+      const notes = result.body;
+      const cleanedNotes = notes.map(note => {
+        return { id: note.id, beauty_product_id: note.beauty_product_id }
+      })
+      expect(cleanedNotes).toEqual(cleanedExpectedNotes);
+    });
+  });
 
 
 })
